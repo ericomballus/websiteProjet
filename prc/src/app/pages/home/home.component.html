@@ -1,0 +1,117 @@
+<div class="main">
+  <div>
+    <app-display-video [videoUrl]="videoUrl"></app-display-video>
+    <div class="videoTitle">
+      Monsieur le president Paul Biya reçu au çankaya Presidential Palace sur le
+      plan diplomatique la capital de la turquie dans le prochains jours
+      abritera la nouvelle representation diplomatique du cameroun
+    </div>
+  </div>
+
+  <div class="carousel-container">
+    <carousel
+      *ngIf="showCarousel"
+      [margin]="10"
+      [width]="600"
+      [height]="100"
+      [autoplay]="true"
+      [cellWidth]="120"
+    >
+      <div
+        class="carousel-cell"
+        *ngFor="let article of Articles; let i = index"
+        (click)="displayVideo(article)"
+      >
+        <img [src]="article.imageUrl" />
+      </div>
+
+      <div class="carousel-cell">
+        <img
+          src="../../../assets/img/visite-etat-couple-presidentiel-talie_8.jpg"
+        />
+      </div>
+    </carousel>
+  </div>
+</div>
+
+<div class="section1">
+  <div class="filter">
+    <select id="selectbox1">
+      <option value="">Select an option&hellip;</option>
+      <option value="aye">Aye</option>
+      <option value="eh">Eh</option>
+      <option value="ooh">Ooh</option>
+      <option value="whoop">Whoop</option>
+    </select>
+  </div>
+  <div class="mounth">
+    <select id="selectbox2">
+      <option value="">Month&hellip;</option>
+      <option value="january">January</option>
+      <option value="february">February</option>
+      <option value="march">March</option>
+      <option value="april">April</option>
+      <option value="may">May</option>
+      <option value="june">June</option>
+      <option value="july">July</option>
+      <option value="august">August</option>
+      <option value="september">September</option>
+      <option value="october">October</option>
+      <option value="november">November</option>
+      <option value="december">December</option>
+    </select>
+  </div>
+  <div class="day">
+    <select id="selectbox3">
+      <option value="">jour;</option>
+      <option value="january">January</option>
+      <option value="february">February</option>
+      <option value="march">March</option>
+      <option value="april">April</option>
+      <option value="may">May</option>
+      <option value="june">June</option>
+      <option value="july">July</option>
+      <option value="august">August</option>
+      <option value="september">September</option>
+      <option value="october">October</option>
+      <option value="november">November</option>
+      <option value="december">December</option>
+    </select>
+  </div>
+  <div class="search">
+    <input type="text" placeholder="Search.." />
+  </div>
+</div>
+
+<div class="section2">
+  <div class="title-section2">vidéos les plus regardées</div>
+  <div class="line"></div>
+</div>
+
+<div class="section3">
+  <div class="carousel-cell">
+    <img
+      src="../../../assets/img/visite-etat-couple-presidentiel-talie_17.jpg"
+    />
+  </div>
+  <div>
+    <img
+      src="../../../assets/img/visite-etat-couple-presidentiel-talie_8.jpg"
+    />
+  </div>
+  <div class="carousel-cell">
+    <img
+      src="../../../assets/img/visite-etat-couple-presidentiel-talie_1.jpg"
+    />
+  </div>
+  <div>
+    <img
+      src="../../../assets/img/visite-etat-couple-presidentiel-talie_4.jpg"
+    />
+  </div>
+</div>
+
+<div class="section4">
+  <div class="title-section4">Gallery photos</div>
+  <div class="line"></div>
+</div>

@@ -1,0 +1,17 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidebar mode="side" opened>
+    <app-sidebar></app-sidebar>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content">
+      <mat-toolbar>
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Example home icon"
+          fontIcon="menu"
+          (click)="sidebar.toggle()"
+        ></mat-icon>
+      </mat-toolbar>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

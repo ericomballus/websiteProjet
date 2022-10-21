@@ -1,0 +1,53 @@
+/node_modules/
+/server/node_modules/
+/prc/node_modules/
+/prc/dist/
+/prc/.angular/
+/server/node_modules/
+/server/www/
+/server/VideoMedia/
+/server/ImageMedia/
+/server/access.log
+/server/architecture.txt
+
+
+/prc/dist
+/prc/src/assets/
+/prc/tmp
+/prc/out-tsc
+/prc/bazel-out
+
+# Node
+/prc/node_modules/
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+/prc/.idea/
+/prc/.project
+/prc/.classpath
+.c9/
+/prc/*.launch
+/prc/.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+/prc/.vscode/*
+/prc/!.vscode/settings.json
+/prc/!.vscode/tasks.json
+/prc/!.vscode/launch.json
+/prc/!.vscode/extensions.json
+/prc/.history/*
+
+# Miscellaneous
+/.angular/cache
+/prc/.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+/prc/testem.log
+/typings
+
+# System files
+/prc/.DS_Store
+/prc/Thumbs.db

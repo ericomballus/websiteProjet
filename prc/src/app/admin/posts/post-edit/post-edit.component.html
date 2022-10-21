@@ -1,0 +1,160 @@
+<div class="btn-container">
+  <div>
+    <button mat-button color="primary" (click)="saveContent()">
+      publier l'article
+    </button>
+  </div>
+
+  <div>
+    <button mat-button color="warn" (click)="cancelContent()">annuler</button>
+  </div>
+</div>
+<!--
+    <div>
+    <button mat-button color="warn" (click)="galerie()">
+      ajouter une video
+    </button>
+    <button mat-button color="warn" (click)="galerie()">
+      ajouter une image
+    </button>
+  </div>
+  <div style="padding-left: 1vw; padding-right: 1vw; width: 80%">
+    <form [formGroup]="form" style="width: 100%">
+      <div class="form-group input-group-lg">
+        <input class="form-control" placeholder="Name" formControlName="name" />
+      </div>
+    </form>
+  </div>
+-->
+<div class="post-edit-main">
+  <div>
+    <button mat-button color="warn" (click)="galerie()">
+      ajouter une video
+    </button>
+    <button mat-button color="warn" (click)="galerie()">
+      ajouter une image
+    </button>
+  </div>
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">titre en français</label>
+      </div>
+      <div class="col-75">
+        <input
+          formControlName="titleFrench"
+          type="text"
+          id="fname"
+          name="titleFrench"
+          placeholder="Titre en français.."
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">titre en anglais</label>
+      </div>
+      <div class="col-75">
+        <input
+          formControlName="titleEnglish"
+          type="text"
+          id="fname"
+          name="titreEnglish"
+          placeholder="Titre en Anglais.."
+        />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-25">
+        <label for="country">Rubriques</label>
+      </div>
+      <div class="col-75">
+        <select
+          id="country"
+          name="country"
+          (change)="getRubrique($event.target)"
+        >
+          <option value="Actualités"></option>
+          <option value="Diplomatie">Diplomatie</option>
+          <option value="Voyages">Voyages</option>
+          <option value="Actualités">Actualités</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="subject">Texte en Français</label>
+      </div>
+      <div class="col-75">
+        <textarea
+          formControlName="texteFrench"
+          id="subject"
+          name="texteFrench"
+          placeholder="contenu de la publication.."
+          style="height: 200px"
+        ></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="subject">Texte en Anglais</label>
+      </div>
+      <div class="col-75">
+        <textarea
+          formControlName="texteEnglish"
+          id="subject"
+          name="texteEnglish"
+          placeholder="Write something.."
+          style="height: 200px"
+        ></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">image media</label>
+      </div>
+      <div class="col-75">
+        <input
+          type="file"
+          name="photo"
+          class="upload"
+          (change)="uploadFile($event, 'photo')"
+        />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">video media</label>
+      </div>
+      <div class="col-75">
+        <input
+          type="file"
+          name="video"
+          class="upload"
+          (change)="uploadVideoFile($event, 'video')"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <input (click)="saveContent()" type="submit" value="Submit" />
+    </div>
+  </form>
+
+  <div class="media">
+    <div *ngIf="photoURL" class="photo" style="height: 100px; width: 100px">
+      <div style="height: 50vh">
+        <img [src]="photoURL" style="width: 25%" />
+      </div>
+    </div>
+    <div *ngIf="videoURL" class="photo" style="height: 100px; width: 200px">
+      <div class="video">
+        <video controls (click)="toggleVideo()" #videoPlayer>
+          <source [src]="videoURL" type="video/mp4" />
+          Browser not supported
+        </video>
+      </div>
+    </div>
+  </div>
+</div>

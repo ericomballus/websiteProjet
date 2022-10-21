@@ -1,0 +1,106 @@
+button {
+  margin-left: 5px;
+}
+header {
+  background-image: url("../../../assets/img/back.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 150px;
+  border-radius: 5px;
+}
+
+.mainDiv {
+  display: flex;
+  flex-wrap: wrap;
+}
+.mainDiv .imgLeft {
+  flex-grow: 1;
+  width: 25%;
+  margin: 0px;
+  // height: 100px;
+}
+
+.mainDiv .centerTitle {
+  flex-grow: 1;
+  width: 50%;
+  margin: 0px;
+  text-align: center;
+}
+.mainDiv .logoRight {
+  flex-grow: 1;
+  width: 25%;
+  margin: 0px;
+}
+
+#hp {
+  float: left;
+  margin: 0 0 0 0;
+}
+//horizontal navigation
+
+ul.sidenav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  // background-color: #f1f1f1;
+  position: relative;
+  height: 100%;
+  overflow: auto;
+  text-transform: uppercase;
+  color: white;
+  // text-align: center;
+}
+
+ul.sidenav li a {
+  display: block;
+  color: white;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 0px;
+  text-decoration: none;
+}
+
+ul.sidenav li a.active {
+  // background-color: #4caf50;
+  color: white;
+  // text-decoration: white;
+  border-bottom: 1px solid white;
+  border-left: none;
+}
+
+ul.sidenav li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+.navigationMenu {
+  width: 100%;
+  // background-color: red;
+
+  position: relative;
+  left: 25%;
+}
+@media screen and (min-width: 900px) {
+  ul.sidenav {
+    width: 100%;
+    height: auto;
+    // position: relative;
+    font-size: 9px;
+  }
+
+  ul.sidenav li a {
+    float: left;
+    // padding: 15px;
+    left: 50%;
+    border-left: 1px solid white;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  ul.sidenav li a {
+    text-align: center;
+    float: none;
+  }
+}
