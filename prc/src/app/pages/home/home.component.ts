@@ -17,6 +17,8 @@ export class HomeComponent implements OnInit {
   showCarousel = true;
   images = [];
   videoUrl!: any;
+  imageUrl!: any;
+  title!: any;
   date = new FormControl(new Date());
   serializedDate = new FormControl(new Date().toISOString());
   Articles!: Article[];
@@ -45,12 +47,29 @@ export class HomeComponent implements OnInit {
         this.videoUrl = arr[0].videoUrl;
         console.log(this.videoUrl);
       }
+      if (arr[0].imageUrl) {
+        this.imageUrl = arr[0].imageUrl;
+        console.log(this.videoUrl);
+      }
+      this.title = arr[0].titleFrench
+        ? arr[0].titleFrench
+        : arr[0].titleEnglish
+        ? arr[0].titleEnglish
+        : 'video';
     });
   }
   displayVideo(article: Article) {
     if (article.videoUrl) {
       this.videoUrl = article.videoUrl;
     }
+    if (article.imageUrl) {
+      this.imageUrl = article.imageUrl;
+    }
+    this.title = article.titleFrench
+      ? article.titleFrench
+      : article.titleEnglish
+      ? article.titleEnglish
+      : 'video';
   }
   openPicker() {
     this.showCarousel = !this.showCarousel;

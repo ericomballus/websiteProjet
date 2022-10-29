@@ -23,4 +23,9 @@ export class PostsComponent implements OnInit {
       this.Articles = arr;
     });
   }
+  removeArticle(a: Article) {
+    this.contentService.removeOneArticle(a).subscribe((res) => {
+      this.Articles = this.Articles.filter((art) => art._id !== a._id);
+    });
+  }
 }

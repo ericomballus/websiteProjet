@@ -34,6 +34,8 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { VisitorsComponent } from './admin/visitors/visitors.component';
 import { LoginComponent } from './admin/login/login.component';
 import { DisplayArticlesComponent } from './components/display-articles/display-articles.component';
+import { RubriqueComponent } from './admin/rubrique/rubrique.component';
+import { RubriqueAddComponent } from './admin/rubrique/rubrique-add/rubrique-add.component';
 //icons import here
 
 @NgModule({
@@ -53,6 +55,8 @@ import { DisplayArticlesComponent } from './components/display-articles/display-
     VisitorsComponent,
     LoginComponent,
     DisplayArticlesComponent,
+    RubriqueComponent,
+    RubriqueAddComponent,
   ],
   imports: [
     BrowserModule,

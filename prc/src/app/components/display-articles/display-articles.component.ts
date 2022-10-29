@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Article } from 'src/app/models/articleModel';
 
 @Component({
@@ -8,8 +8,13 @@ import { Article } from 'src/app/models/articleModel';
 })
 export class DisplayArticlesComponent implements OnInit {
   @Input() public Articles!: Article[];
+  @Output() deleteArticle = new EventEmitter();
   admin = 0;
   constructor() {}
 
   ngOnInit(): void {}
+
+  remove(article: Article) {
+    this.deleteArticle.emit(article);
+  }
 }

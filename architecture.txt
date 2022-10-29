@@ -1,3 +1,9 @@
+
+git remote add origin git@github.com:ericomballus/websiteProjet.git
+git branch -M main
+git push -u origin main
+
+
 hEntities:
  - t_statutobjet_sta : statusObject (sta_id:int;sta_sLibelle:string)
  - t_langue_lng : language (lng_id:int;sta_id:int;lng_sLibelle:string;lng_sCode:string)

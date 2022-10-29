@@ -8,7 +8,7 @@ const path = require("path");
 const fs = require("fs");
 router.post(
   "/",
-  require("../../utils/verifyToken"),
+  // require("../../utils/verifyToken"),
   saveVideo,
   async (req, res, next) => {
     console.log(req.body);
@@ -44,15 +44,12 @@ router.get("/:id", (req, res, next) => {
   let imagePath;
   let videoPath;
   let contentId = req.params.id;
-  console.log(contentId);
   ContentModel.findById(contentId, (err, content) => {
-    console.log(content);
     if (!err && content) {
       if (content.imageUrl == "null" || content.imageUrl == null) {
-        // imagePath = path.join(UPLOAD_PATH_IMAGES, content.imageUrl);
       } else {
         imagePath = path.join(UPLOAD_PATH_IMAGES, content.imageUrl);
-        fs.access(imagePath, fs.F_OK, (e) => {
+        fs.access(content.imageUrl, fs.F_OK, (e) => {
           if (e) {
             res.status(400).json({
               error: "image inexistante",
@@ -62,11 +59,13 @@ router.get("/:id", (req, res, next) => {
           res.setHeader("Content-Type", "image/jpeg");
 
           fs.createReadStream(
-            path.join(UPLOAD_PATH_IMAGES, content.imageUrl)
+            // path.join(UPLOAD_PATH_IMAGES, content.imageUrl)
+            content.imageUrl
           ).pipe(res);
         });
       }
     } else {
+      console.log(err);
       res.status(400).json(err);
     }
   });
@@ -108,8 +107,13 @@ router.get("/video/:id", (req, res, next) => {
 
 router.delete("/:id", async (req, res, next) => {
   try {
+    let Id = req.params.id;
+    const filter = { _id: Id };
+    let result = await ContentModel.findOneAndRemove(filter);
+    res.status(200).json(result);
   } catch (e) {
     console.error(e);
+    res.status(500).json(error);
   }
 });
 

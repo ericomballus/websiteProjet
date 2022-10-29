@@ -5,5 +5,8 @@
 </div>
 
 <div class="post-container">
-  <app-display-articles [Articles]="Articles"></app-display-articles>
+  <app-display-articles
+    [Articles]="Articles"
+    (deleteArticle)="removeArticle($event)"
+  ></app-display-articles>
 </div>

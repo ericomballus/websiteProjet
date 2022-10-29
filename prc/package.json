@@ -23,6 +23,8 @@
     "@angular/router": "^14.2.0",
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
+    "@ngx-translate/core": "^14.0.0",
+    "@ngx-translate/http-loader": "^7.0.0",
     "@popperjs/core": "^2.10.2",
     "angular-responsive-carousel": "^2.1.2",
     "rxjs": "~7.5.0",

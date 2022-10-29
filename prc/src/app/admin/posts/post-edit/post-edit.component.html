@@ -75,10 +75,10 @@
           name="country"
           (change)="getRubrique($event.target)"
         >
-          <option value="Actualités"></option>
-          <option value="Diplomatie">Diplomatie</option>
-          <option value="Voyages">Voyages</option>
-          <option value="Actualités">Actualités</option>
+          <option value=""></option>
+          <option [value]="r._id" *ngFor="let r of rubriqueArr">
+            {{ r.name }}
+          </option>
         </select>
       </div>
     </div>

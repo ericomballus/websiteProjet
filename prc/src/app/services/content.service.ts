@@ -13,6 +13,11 @@ export class ContentService {
     return this.http.post(`${url}/content`, data);
   }
 
+  removeOneArticle(data: any) {
+    let url = this.urlService.getUrl();
+    return this.http.delete(`${url}/content/${data._id}`, data);
+  }
+
   getArticles() {
     return this.http.get<Article[]>(`${this.urlService.getUrl()}/content`);
   }

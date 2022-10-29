@@ -6,9 +6,18 @@ module.exports = async (videoPath, res, req) => {
 
   const range = req.headers.range;
   if (range) {
-    let [start, end] = range.replace(/bytes=/, "").split("-");
-    start = parseInt(start, 10);
-    end = end ? parseInt(end, 10) : size - 1;
+    // let [start, end] = range.replace(/bytes=/, "").split("-");
+    //  start = parseInt(start, 10);
+    //  end = end ? parseInt(end, 10) : size - 1;
+
+    const CHUNK_SIZE = 10 ** 6;
+    const start = Number(range.replace(/\D/g, ""));
+    const end = Math.min(start + CHUNK_SIZE, size - 1);
+    console.log("size video====>", size);
+    console.log("chunksize====>", CHUNK_SIZE);
+    console.log("start ====>", start);
+    console.log("end ====>", end);
+    console.log("video path ====>", videoPath);
     res.writeHead(206, {
       "Content-Range": `bytes ${start}-${end}/${size}`,
       "Accept-Ranges": `bytes`,

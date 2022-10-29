@@ -70,7 +70,7 @@ io.sockets.on("connection", (socket) => {
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(cors());
-//app.use(require("./utils/verifyToken"));
+app.use(require("./utils/logger"));
 //app.use(require("./utils/createToken"));
 app.use("/", express.static("www"));
 app.use(function (req, res, next) {
@@ -106,6 +106,7 @@ app.use("/home", express.static("www"));
 app.use("/content", require("./api/routes/content"));
 app.use("/visitor", require("./api/routes/visitor"));
 app.use("/user", require("./api/routes/user"));
+app.use("/rubriques", require("./api/routes/rubrique"));
 app.use((req, res, next) => {
   const error = new Error("Not found ");
   error.status = 404;

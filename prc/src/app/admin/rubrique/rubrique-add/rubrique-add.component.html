@@ -1,0 +1,50 @@
+<div class="post-edit-main">
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">rubrique name</label>
+      </div>
+      <div class="col-75">
+        <input
+          formControlName="name"
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Rubrique Name.."
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="country">Select Level</label>
+      </div>
+      <div class="col-75">
+        <select id="level" name="level" (change)="getLevel($event.target)">
+          <option value=""></option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-25">
+        <label for="country">Rubriques Parent</label>
+      </div>
+      <div class="col-75">
+        <select id="country" name="country" (change)="getParent($event.target)">
+          <option value=""></option>
+          <option [value]="r._id" *ngFor="let r of rubriqueArr">
+            {{ r.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <input (click)="saveRubrique()" type="submit" value="Submit" />
+    </div>
+  </form>
+</div>

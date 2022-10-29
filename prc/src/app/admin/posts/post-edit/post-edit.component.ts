@@ -5,6 +5,7 @@ import { SaveRandomService } from 'src/app/services/save-random.service';
 import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { RubriqueService } from 'src/app/services/rubriques/rubrique.service';
 @Component({
   selector: 'app-post-edit',
   templateUrl: './post-edit.component.html',
@@ -21,12 +22,15 @@ export class PostEditComponent implements OnInit {
   videoURL: any;
   imageUrl: any;
   form: FormGroup;
+  rubriqueArr: any[] = [];
+  rubriqueId: any = null;
   constructor(
     private contentService: ContentService,
     public fb: FormBuilder,
     private saveRandom: SaveRandomService,
     private router: Router,
-    private notifi: NotificationService
+    private notifi: NotificationService,
+    private rubriqueService: RubriqueService
   ) {
     this.form = this.fb.group({
       titleFrench: [''],
@@ -39,7 +43,15 @@ export class PostEditComponent implements OnInit {
   ngOnInit(): void {
     if (!this.saveRandom.getUser()) {
       this.router.navigate(['/login']);
+    } else {
+      this.getRubriqueList();
     }
+  }
+
+  getRubriqueList() {
+    this.rubriqueService.getRubrique().subscribe((arr: any[]) => {
+      this.rubriqueArr = arr;
+    });
   }
 
   uploadVideoFile(event: any, formControlName: any) {
@@ -105,12 +117,16 @@ export class PostEditComponent implements OnInit {
     if (this.fileImage) {
       formData.append('contentImage', this.fileImage);
     }
+    if (this.rubriqueId) {
+      formData.append('rubriqueId', this.rubriqueId);
+    }
     let id: any = this.saveRandom.getUser()._id;
     formData.append('authorId', id);
     this.contentService.postArticle(formData).subscribe(
       (resultat) => {
         console.log(resultat);
         this.form.reset();
+        this.rubriqueId = null;
       },
       (err: HttpErrorResponse) => {
         this.notifi.openSnackBar(err.error);
@@ -143,5 +159,6 @@ export class PostEditComponent implements OnInit {
       .map((option: any) => option.value);
     let id = selectedValues[0];
     console.log(id);
+    this.rubriqueId = id;
   }
 }

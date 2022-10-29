@@ -4,6 +4,8 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { LoginComponent } from './admin/login/login.component';
 import { PostEditComponent } from './admin/posts/post-edit/post-edit.component';
 import { PostsComponent } from './admin/posts/posts.component';
+import { RubriqueAddComponent } from './admin/rubrique/rubrique-add/rubrique-add.component';
+import { RubriqueComponent } from './admin/rubrique/rubrique.component';
 import { SettingsComponent } from './admin/settings/settings.component';
 import { UsersComponent } from './admin/users/users.component';
 import { VisitorsComponent } from './admin/visitors/visitors.component';
@@ -18,6 +20,8 @@ const routes: Routes = [
   { path: 'setting', component: SettingsComponent },
   { path: 'visitors', component: VisitorsComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'rubrique', component: RubriqueComponent },
+  { path: 'rubrique/rubrique-add', component: RubriqueAddComponent },
 
   { path: '**', component: HomeComponent },
 ];

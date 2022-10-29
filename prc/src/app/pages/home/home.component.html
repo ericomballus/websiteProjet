@@ -1,10 +1,13 @@
 <div class="main">
   <div>
-    <app-display-video [videoUrl]="videoUrl"></app-display-video>
+    <div style="height: 50x">
+      <app-display-video
+        [videoUrl]="videoUrl"
+        [imageUrl]="imageUrl"
+      ></app-display-video>
+    </div>
     <div class="videoTitle">
-      Monsieur le president Paul Biya reçu au çankaya Presidential Palace sur le
-      plan diplomatique la capital de la turquie dans le prochains jours
-      abritera la nouvelle representation diplomatique du cameroun
+      {{ title }}
     </div>
   </div>
 
