@@ -1,11 +1,6 @@
 const mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-let rbID= {
-  type: mongoose.Schema.Types.ObjectId,
-  ref: "Rubrique",
-  default: null,
-  //required: true,
-},
+
 const ContentSchema = new Schema({
   created: { type: Date, default: Date.now },
   titleFrench: { type: String, default: " " },
@@ -25,6 +20,12 @@ const ContentSchema = new Schema({
     default: null,
     required: true,
   },
-  rubriqueId: [rbID],
+
+  rubriqueId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Rubrique",
+    default: null,
+    //required: true,
+  },
 });
 module.exports = mongoose.model("Content", ContentSchema);
