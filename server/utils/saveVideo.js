@@ -41,12 +41,28 @@ module.exports = (req, res, next) => {
         pathVideo = `./VideoMedia/${name}`;
         part.pipe(createWriteStream(`${pathVideo}`));
       }
-      /* if (part.name == "contentImage") {
+      if (part.name == "contentImage") {
         let name = `${part.filename}-${Date.now()}.png`;
-        req.body["imageUrl"] = name;
+        req.body["imageUrl"] = path.join("ImageMedia", name);
         imagePath = name;
         part.pipe(createWriteStream(`./ImageMedia/${name}`));
-      }*/
+      }
+
+      if (part.name == "contentAudio") {
+        let filename = part.filename.split(path.extname(part.filename))[0];
+        let name = `${filename}-${Date.now()}${path.extname(part.filename)}`;
+        req.body["audioUrl"] = name;
+        pathAudio = `./AudioMedia/${name}`;
+        part.pipe(createWriteStream(`${pathAudio}`));
+      }
+      if (part.name == "contentDoc") {
+        let filename = part.filename.split(path.extname(part.filename))[0];
+        let name = `${filename}-${Date.now()}${path.extname(part.filename)}`;
+        req.body["docUrl"] = name;
+        pathDoc = `./DocMedia/${name}`;
+        part.pipe(createWriteStream(`${pathDoc}`));
+      }
+
       //  imagePath = null;
       // ignore file's content here
       part.resume();
@@ -59,8 +75,6 @@ module.exports = (req, res, next) => {
 
   // Close emitted after form parsed
   form.on("close", async () => {
-    console.log("Upload completed!");
-    console.log(req.body);
     thumbsupply
       .generateThumbnail(pathVideo, {
         size: thumbsupply.ThumbSize.LARGE, // or ThumbSize.LARGE

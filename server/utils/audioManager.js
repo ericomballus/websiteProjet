@@ -1,8 +1,8 @@
 const { stat, createReadStream } = require("fs");
 const { promisify } = require("util");
 const fileInfo = promisify(stat);
-module.exports = async (videoPath, res, req) => {
-  const { size } = await fileInfo(videoPath);
+module.exports = async (audioPath, res, req) => {
+  const { size } = await fileInfo(audioPath);
 
   const range = req.headers.range;
   if (range) {
@@ -13,19 +13,18 @@ module.exports = async (videoPath, res, req) => {
     const CHUNK_SIZE = 10 ** 6;
     const start = Number(range.replace(/\D/g, ""));
     const end = Math.min(start + CHUNK_SIZE, size - 1);
-
     res.writeHead(206, {
       "Content-Range": `bytes ${start}-${end}/${size}`,
       "Accept-Ranges": `bytes`,
       "Content-Length": end - start + 1,
-      "Content-Type": "video/mp4",
+      "Content-Type": "audion/mp3",
     });
-    createReadStream(videoPath, { start, end }).pipe(res);
+    createReadStream(audioPath, { start, end }).pipe(res);
   } else {
     res.writeHead(200, {
       "Content-Length": size,
-      "Content-Type": "video/mp4",
+      "Content-Type": "audio/mp3",
     });
-    createReadStream(videoPath).pipe(res);
+    createReadStream(audioPath).pipe(res);
   }
 };

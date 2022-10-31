@@ -107,6 +107,7 @@ app.use("/content", require("./api/routes/content"));
 app.use("/visitor", require("./api/routes/visitor"));
 app.use("/user", require("./api/routes/user"));
 app.use("/rubriques", require("./api/routes/rubrique"));
+app.use("/gallery", require("./api/routes/gallery"));
 app.use((req, res, next) => {
   const error = new Error("Not found ");
   error.status = 404;

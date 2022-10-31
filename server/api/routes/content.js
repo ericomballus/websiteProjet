@@ -39,16 +39,11 @@ router.get("/", async (req, res, next) => {
 });
 
 router.get("/:id", (req, res, next) => {
-  let UPLOAD_PATH_IMAGES = "ImageMedia";
-  let UPLOAD_PATH_VIDEO = "VideoMedia";
-  let imagePath;
-  let videoPath;
   let contentId = req.params.id;
   ContentModel.findById(contentId, (err, content) => {
+    console.log(content);
     if (!err && content) {
-      if (content.imageUrl == "null" || content.imageUrl == null) {
-      } else {
-        imagePath = path.join(UPLOAD_PATH_IMAGES, content.imageUrl);
+      if (content.imageUrl) {
         fs.access(content.imageUrl, fs.F_OK, (e) => {
           if (e) {
             res.status(400).json({
@@ -58,11 +53,21 @@ router.get("/:id", (req, res, next) => {
           }
           res.setHeader("Content-Type", "image/jpeg");
 
-          fs.createReadStream(
-            // path.join(UPLOAD_PATH_IMAGES, content.imageUrl)
-            content.imageUrl
-          ).pipe(res);
+          fs.createReadStream(content.imageUrl).pipe(res);
         });
+      } else if (content.audioUrl) {
+        let UPLOAD_PATH_AUDIO = "AudioMedia";
+        require("../../utils/audioManager")(
+          path.join(UPLOAD_PATH_AUDIO, content.audioUrl),
+          res,
+          req
+        );
+      } else if (content.docUrl) {
+        let UPLOAD_PATH_DOC = "DocMedia";
+
+        fs.createReadStream(path.join(UPLOAD_PATH_DOC, content.docUrl)).pipe(
+          res
+        );
       }
     } else {
       console.log(err);
@@ -89,10 +94,7 @@ router.get("/video/:id", (req, res, next) => {
           });
           return;
         }
-        // res.setHeader("Content-Type", "video/mp4");
-        /*  fs.createReadStream(
-          path.join(UPLOAD_PATH_VIDEO, content.videoUrl)
-        ).pipe(res);*/
+
         require("../../utils/videoManager")(
           path.join(UPLOAD_PATH_VIDEO, content.videoUrl),
           res,
