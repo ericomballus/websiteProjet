@@ -38,8 +38,12 @@ export class HomeComponent implements OnInit {
   getArticlesList() {
     this.contentService.getArticles().subscribe((arr) => {
       arr.forEach((a) => {
-        a.imageUrl = `${this.urlService.getUrl()}/content/${a._id}`;
-        a.videoUrl = `${this.urlService.getUrl()}/content/video/${a._id}`;
+        if (a.imageUrl && a.imageUrl !== null && a.imageUrl !== 'null') {
+          a.imageUrl = `${this.urlService.getUrl()}/content/${a._id}`;
+        }
+        if (a.videoUrl && a.videoUrl !== null && a.videoUrl !== 'null') {
+          a.videoUrl = `${this.urlService.getUrl()}/content/video/${a._id}`;
+        }
       });
 
       this.Articles = arr;

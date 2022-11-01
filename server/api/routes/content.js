@@ -43,7 +43,11 @@ router.get("/:id", (req, res, next) => {
   ContentModel.findById(contentId, (err, content) => {
     console.log(content);
     if (!err && content) {
-      if (content.imageUrl) {
+      if (
+        content.imageUrl &&
+        content.imageUrl !== null &&
+        content.imageUrl !== "null"
+      ) {
         fs.access(content.imageUrl, fs.F_OK, (e) => {
           if (e) {
             res.status(400).json({
@@ -55,19 +59,36 @@ router.get("/:id", (req, res, next) => {
 
           fs.createReadStream(content.imageUrl).pipe(res);
         });
-      } else if (content.audioUrl) {
+      } else if (
+        content.audioUrl &&
+        content.audioUrl !== null &&
+        content.audioUrl !== "null"
+      ) {
         let UPLOAD_PATH_AUDIO = "AudioMedia";
         require("../../utils/audioManager")(
           path.join(UPLOAD_PATH_AUDIO, content.audioUrl),
           res,
           req
         );
-      } else if (content.docUrl) {
+      } else if (
+        content.docUrl &&
+        content.docUrl !== null &&
+        content.docUrl !== "null"
+      ) {
         let UPLOAD_PATH_DOC = "DocMedia";
 
-        fs.createReadStream(path.join(UPLOAD_PATH_DOC, content.docUrl)).pipe(
-          res
-        );
+        fs.access(content.docUrl, fs.F_OK, (e) => {
+          if (e) {
+            res.status(400).json({
+              error: "document inexistant",
+            });
+            return;
+          }
+
+          fs.createReadStream(path.join(UPLOAD_PATH_DOC, content.docUrl)).pipe(
+            res
+          );
+        });
       }
     } else {
       console.log(err);
@@ -83,24 +104,27 @@ router.get("/video/:id", (req, res, next) => {
 
   ContentModel.findById(contentId, (err, content) => {
     if (!err && content) {
-      if (content.videoUrl) {
+      if (
+        content.videoUrl &&
+        content.videoUrl !== null &&
+        content.videoUrl !== "null"
+      ) {
         videoPath = path.join(UPLOAD_PATH_VIDEO, content.videoUrl);
+        fs.access(videoPath, fs.F_OK, (e) => {
+          if (e) {
+            res.status(400).json({
+              error: "video inexistante",
+            });
+            return;
+          }
+
+          require("../../utils/videoManager")(
+            path.join(UPLOAD_PATH_VIDEO, content.videoUrl),
+            res,
+            req
+          );
+        });
       }
-
-      fs.access(videoPath, fs.F_OK, (e) => {
-        if (e) {
-          res.status(400).json({
-            error: "video inexistante",
-          });
-          return;
-        }
-
-        require("../../utils/videoManager")(
-          path.join(UPLOAD_PATH_VIDEO, content.videoUrl),
-          res,
-          req
-        );
-      });
     } else {
       res.status(400).json(err);
     }
