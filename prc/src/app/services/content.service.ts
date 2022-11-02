@@ -18,6 +18,11 @@ export class ContentService {
     return this.http.post(`${url}/gallery`, data);
   }
 
+  postActes(data: any) {
+    let url = this.urlService.getUrl();
+    return this.http.post(`${url}/actes`, data);
+  }
+
   removeOneArticle(data: any) {
     let url = this.urlService.getUrl();
     return this.http.delete(`${url}/content/${data._id}`, data);

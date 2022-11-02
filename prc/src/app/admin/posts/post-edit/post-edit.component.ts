@@ -15,6 +15,7 @@ export class PostEditComponent implements OnInit {
   @ViewChild('fileButton', { static: false }) fileButton!: ElementRef;
   @ViewChild('videoPlayer', { static: false }) videoplayer!: ElementRef;
   file: any;
+  pdfFile: any;
   fileVideo: any;
   fileImage: any;
   fileAudio: any;
@@ -115,6 +116,35 @@ export class PostEditComponent implements OnInit {
     formData.append('authorId', id);
 
     this.contentService.postGallery(formData).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  uploadPdf(event: any) {
+    this.pdfFile = event.target.files;
+
+    let arr: any = [];
+  }
+  saveActe() {
+    let formData = new FormData();
+    for (const doc of this.pdfFile) {
+      formData.append('acteDoc', doc);
+    }
+
+    formData.append('acteImage', this.file);
+    let id: any = this.saveRandom.getUser()._id;
+    let ref: any = 1;
+    formData.append('authorId', id);
+    formData.append('titleFrench', 'hello hello test test');
+    formData.append('titleEnglish', 'hello hello english title');
+    formData.append('reference', ref);
+
+    this.contentService.postActes(formData).subscribe(
       (res) => {
         console.log(res);
       },

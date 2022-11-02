@@ -139,6 +139,21 @@
         />
       </div>
     </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">multiple file pdf</label>
+      </div>
+      <div class="col-75">
+        <input
+          type="file"
+          id="files"
+          name="files"
+          multiple=""
+          class="upload"
+          (change)="uploadPdf($event)"
+        />
+      </div>
+    </div>
 
     <div class="row">
       <div class="col-25">
@@ -154,7 +169,7 @@
       </div>
     </div>
     <div class="row">
-      <input (click)="saveContent()" type="submit" value="Submit" />
+      <input (click)="saveActe()" type="submit" value="Submit" />
     </div>
   </form>
 

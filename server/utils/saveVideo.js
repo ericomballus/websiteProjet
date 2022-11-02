@@ -32,11 +32,20 @@ module.exports = (req, res, next) => {
       // filename is defined when this is a file
       count++;
 
-      if (part.name == "contentVideo") {
+      if (part.name == "contentFrVideo") {
         let filename = part.filename.split(path.extname(part.filename))[0];
         let name = `${filename}-${Date.now()}.mp4`;
         imagePath = `${filename}-${Date.now()}.png`;
-        req.body["videoUrl"] = name;
+        req.body["videoFrUrl"] = name;
+        req.body["imageUrl"] = imagePath;
+        pathVideo = `./VideoMedia/${name}`;
+        part.pipe(createWriteStream(`${pathVideo}`));
+      }
+      if (part.name == "contentEnVideo") {
+        let filename = part.filename.split(path.extname(part.filename))[0];
+        let name = `${filename}-${Date.now()}.mp4`;
+        imagePath = `${filename}-${Date.now()}.png`;
+        req.body["videoEnUrl"] = name;
         req.body["imageUrl"] = imagePath;
         pathVideo = `./VideoMedia/${name}`;
         part.pipe(createWriteStream(`${pathVideo}`));
@@ -48,17 +57,31 @@ module.exports = (req, res, next) => {
         part.pipe(createWriteStream(`./ImageMedia/${name}`));
       }
 
-      if (part.name == "contentAudio") {
+      if (part.name == "contentFrAudio") {
         let filename = part.filename.split(path.extname(part.filename))[0];
         let name = `${filename}-${Date.now()}${path.extname(part.filename)}`;
-        req.body["audioUrl"] = name;
+        req.body["audioFrUrl"] = name;
         pathAudio = `./AudioMedia/${name}`;
         part.pipe(createWriteStream(`${pathAudio}`));
       }
-      if (part.name == "contentDoc") {
+      if (part.name == "contentEnAudio") {
         let filename = part.filename.split(path.extname(part.filename))[0];
         let name = `${filename}-${Date.now()}${path.extname(part.filename)}`;
-        req.body["docUrl"] = name;
+        req.body["audioEnUrl"] = name;
+        pathAudio = `./AudioMedia/${name}`;
+        part.pipe(createWriteStream(`${pathAudio}`));
+      }
+      if (part.name == "contentFrDoc") {
+        let filename = part.filename.split(path.extname(part.filename))[0];
+        let name = `${filename}-${Date.now()}${path.extname(part.filename)}`;
+        req.body["docFrUrl"] = name;
+        pathDoc = `./DocMedia/${name}`;
+        part.pipe(createWriteStream(`${pathDoc}`));
+      }
+      if (part.name == "contentEnDoc") {
+        let filename = part.filename.split(path.extname(part.filename))[0];
+        let name = `${filename}-${Date.now()}${path.extname(part.filename)}`;
+        req.body["docEnUrl"] = name;
         pathDoc = `./DocMedia/${name}`;
         part.pipe(createWriteStream(`${pathDoc}`));
       }
@@ -80,7 +103,7 @@ module.exports = (req, res, next) => {
         size: thumbsupply.ThumbSize.LARGE, // or ThumbSize.LARGE
         timestamp: "10%", // or `30` for 30 seconds
         forceCreate: true,
-        cacheDir: `./ImageMedia`,
+        cacheDir: `./VideoMedia/thumb`,
         mimetype: "video/mp4",
       })
       .then((thumPath) => {
