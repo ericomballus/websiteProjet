@@ -23,7 +23,11 @@ router.post("/", upload.array("images"), async (req, res, next) => {
   let arrImages = req.files;
   arrImages.forEach((img) => {
     img["url"] =
-      req.protocol + "://" + req.get("host") + "/gallery/" + img.filename;
+      req.protocol +
+      "://" +
+      req.get("host") +
+      "/gallery-images/" +
+      img.filename;
   });
   console.log(req.files);
   try {

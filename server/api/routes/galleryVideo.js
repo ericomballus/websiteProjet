@@ -56,7 +56,7 @@ router.get("/:id", (req, res, next) => {
 router.get("/video/:id", (req, res, next) => {
   let UPLOAD_PATH_VIDEO = "VideoMedia";
   let videoPath = path.join(UPLOAD_PATH_VIDEO, req.params.id);
-  fs.access(imagePath, fs.F_OK, (e) => {
+  fs.access(videoPath, fs.F_OK, (e) => {
     if (e) {
       res.status(400).json({
         error: "image inexistante",
@@ -64,7 +64,12 @@ router.get("/video/:id", (req, res, next) => {
       return;
     }
 
-    fs.createReadStream(imagePath).pipe(res);
+    // fs.createReadStream(videoPath).pipe(res);
+    require("../../utils/videoManager")(
+      path.join(UPLOAD_PATH_VIDEO, req.params.id),
+      res,
+      req
+    );
   });
 });
 

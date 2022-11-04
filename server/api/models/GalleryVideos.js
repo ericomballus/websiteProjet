@@ -12,7 +12,8 @@ const GalleryVideoSchema = new Schema({
     required: true,
   },
   reference: { type: String, default: "president" }, //firstlady
-  videoURL: { type: String, required: true },
+  videoFrURL: { type: String, required: true },
+  videoEnURL: { type: String, required: true },
   thumb: { type: String, required: true },
 });
 module.exports = mongoose.model("galleryvideo", GalleryVideoSchema);
