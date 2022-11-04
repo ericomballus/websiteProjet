@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-const GalleryImageSchema = new Schema({
+const GalleryAudioSchema = new Schema({
   created: { type: Date, default: Date.now },
   titleFrench: { type: String, default: " " },
   titleEnglish: { type: String, default: " " },
@@ -11,13 +11,9 @@ const GalleryImageSchema = new Schema({
     default: null,
     required: true,
   },
-  reference: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Rubrique",
-    default: null,
-  },
-  cmp: { type: Number, default: 0 },
-  imagesURL: { type: Array, default: [] },
+  reference: { type: String, default: "president" }, //firstlady
+  videoFrURL: { type: String, required: true },
+  videoEnURL: { type: String, required: true },
+  thumb: { type: String, required: true },
 });
-module.exports = mongoose.model("galleryimage", GalleryImageSchema);
-//
+module.exports = mongoose.model("galleryaudio", GalleryVideoSchema);

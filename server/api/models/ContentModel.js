@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
-var Schema = mongoose.Schema;
-let rbrID = {
+let Schema = mongoose.Schema;
+let rubriqueID = {
   type: mongoose.Schema.Types.ObjectId,
   ref: "Rubrique",
   default: null,
-  //required: true,
 };
 const ContentSchema = new Schema({
   created: { type: Date, default: Date.now },
@@ -19,7 +18,11 @@ const ContentSchema = new Schema({
   audioEnUrl: { type: String, default: null },
   docFrUrl: { type: String, default: null },
   docEnUrl: { type: String, default: null },
-  state: { type: Boolean, default: false, required: true },
+  state: { type: Boolean, default: true },
+  carousel: { type: Boolean, default: false },
+  actu: { type: Boolean, default: false },
+  channel: { type: Boolean, default: false },
+  cmp: { type: Number, default: 0 },
   lastUpdate: {
     type: Array,
     default: [Date.now],
@@ -31,6 +34,6 @@ const ContentSchema = new Schema({
     required: true,
   },
 
-  rubriqueId: [rbrID],
+  rubriqueId: [rubriqueID],
 });
 module.exports = mongoose.model("Content", ContentSchema);
