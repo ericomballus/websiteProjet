@@ -1,18 +1,35 @@
 <div class="main">
-  <div>
-    <div style="height: 50x">
-      <app-display-video
-        [videoUrl]="videoUrl"
-        [imageUrl]="imageUrl"
-      ></app-display-video>
+  <div class="youtube">
+    <div class="vid">
+      <div style="height: 50x">
+        <app-display-video
+          [videoUrl]="videoUrl"
+          [imageUrl]="imageUrl"
+        ></app-display-video>
+      </div>
+      <div class="videoTitle">
+        {{ title }}
+      </div>
     </div>
-    <div class="videoTitle">
-      {{ title }}
+    <div class="side">
+      <div
+        *ngFor="let article of Articles; let i = index"
+        (click)="displayVideo(article)"
+        class="int-side"
+      >
+        <div class="image">
+          <img [src]="article.imageUrl" />
+        </div>
+        <div class="titre">
+          {{ article.titleFrench }}
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="carousel-container">
-    <carousel
+    <!--
+      <carousel
       *ngIf="showCarousel"
       [margin]="10"
       [width]="600"
@@ -34,6 +51,7 @@
         />
       </div>
     </carousel>
+    -->
   </div>
 </div>
 

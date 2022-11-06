@@ -105,11 +105,11 @@ router.get("/video/:id", (req, res, next) => {
   ContentModel.findById(contentId, (err, content) => {
     if (!err && content) {
       if (
-        content.videoUrl &&
-        content.videoUrl !== null &&
-        content.videoUrl !== "null"
+        content.videoFrUrl &&
+        content.videoFrUrl !== null &&
+        content.videoFrUrl !== "null"
       ) {
-        videoPath = path.join(UPLOAD_PATH_VIDEO, content.videoUrl);
+        videoPath = path.join(UPLOAD_PATH_VIDEO, content.videoFrUrl);
         fs.access(videoPath, fs.F_OK, (e) => {
           if (e) {
             res.status(400).json({
@@ -119,7 +119,7 @@ router.get("/video/:id", (req, res, next) => {
           }
 
           require("../../utils/videoManager")(
-            path.join(UPLOAD_PATH_VIDEO, content.videoUrl),
+            path.join(UPLOAD_PATH_VIDEO, content.videoFrUrl),
             res,
             req
           );

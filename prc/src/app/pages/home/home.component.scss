@@ -88,3 +88,59 @@ mat-form-field {
     border-bottom: 1px solid black;
   }
 }
+
+.side {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+.side img {
+  width: 150px;
+}
+
+.vid {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.youtube:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.int-side {
+  display: flex;
+  align-items: center;
+}
+
+.titre {
+  // float: left;
+  // width: 25%;
+  font-size: 9px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
+.image {
+  // float: left;
+  // width: 75%;
+  margin-top: 15px;
+  height: 100px;
+  width: 150px;
+  margin-left: 10px;
+  border-radius: 15px;
+  background-color: #202020;
+  box-shadow: 4px 3px 8px 0px rgb(78, 76, 71);
+  cursor: pointer;
+  &:hover {
+    box-shadow: 4px 3px 11px 6px rgb(78, 76, 71);
+    transform: translateY(-3px);
+  }
+  img {
+    height: 100px;
+    width: 150px;
+  }
+}

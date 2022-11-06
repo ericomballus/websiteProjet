@@ -41,19 +41,18 @@ export class HomeComponent implements OnInit {
         if (a.imageUrl && a.imageUrl !== null && a.imageUrl !== 'null') {
           a.imageUrl = `${this.urlService.getUrl()}/content/${a._id}`;
         }
-        if (a.videoUrl && a.videoUrl !== null && a.videoUrl !== 'null') {
-          a.videoUrl = `${this.urlService.getUrl()}/content/video/${a._id}`;
+        if (a.videoFrUrl && a.videoFrUrl !== null && a.videoFrUrl !== 'null') {
+          a.videoFrUrl = `${this.urlService.getUrl()}/content/video/${a._id}`;
         }
       });
 
       this.Articles = arr;
-      if (arr[0].videoUrl) {
-        this.videoUrl = arr[0].videoUrl;
+      if (arr[0].videoFrUrl) {
+        this.videoUrl = arr[0].videoFrUrl;
         console.log(this.videoUrl);
       }
       if (arr[0].imageUrl) {
         this.imageUrl = arr[0].imageUrl;
-        console.log(this.videoUrl);
       }
       this.title = arr[0].titleFrench
         ? arr[0].titleFrench
@@ -63,8 +62,8 @@ export class HomeComponent implements OnInit {
     });
   }
   displayVideo(article: Article) {
-    if (article.videoUrl) {
-      this.videoUrl = article.videoUrl;
+    if (article.videoFrUrl) {
+      this.videoUrl = article.videoFrUrl;
     }
     if (article.imageUrl) {
       this.imageUrl = article.imageUrl;

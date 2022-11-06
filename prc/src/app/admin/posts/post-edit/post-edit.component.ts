@@ -167,13 +167,16 @@ export class PostEditComponent implements OnInit {
     }
 
     if (this.fileVideo) {
-      formData.append('contentVideo', this.fileVideo);
+      formData.append('contentFrVideo', this.fileVideo);
+    }
+    if (this.fileVideo) {
+      formData.append('contentEnVideo', this.fileVideo);
     }
     if (this.fileImage) {
       formData.append('contentImage', this.fileImage);
     }
     if (this.fileAudio) {
-      formData.append('contentAudio', this.fileAudio);
+      formData.append('contentFrAudio', this.fileAudio);
     }
     if (this.fileApplication) {
       console.log(this.fileApplication);

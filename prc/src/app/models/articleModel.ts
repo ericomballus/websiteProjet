@@ -6,6 +6,7 @@ export interface Article {
   texteFrench?: string;
   texteEnglish?: string;
   videoUrl?: string;
+  videoFrUrl?: string;
   imageUrl?: string;
   state?: boolean;
   lastUpdate?: any[];
